@@ -1,0 +1,20 @@
+module "eks" {
+  source                    = "../../../modules/eks"
+  region                    = var.region
+  environment               = var.environment
+  vpc_state_bucket          = var.vpc_state_bucket
+  state_bucket_region       = var.state_bucket_region
+  private_subnets           = var.private_subnets
+  gpu_instance_type         = var.gpu_instance_type
+  eks_general_instance_type = var.eks_general_instance_type
+  min_eks_general_nodes     = var.min_eks_general_nodes
+  max_eks_general_nodes     = var.max_eks_general_nodes
+  min_eks_gpu_nodes         = var.min_eks_gpu_nodes
+  max_eks_gpu_nodes         = var.max_eks_gpu_nodes
+  ebs_csi_driver_version    = var.ebs_csi_driver_version
+  eks_version               = var.eks_version
+  eks_cluster_name          = var.eks_cluster_name
+  kube_proxy_version        = var.kube_proxy_version
+  k8s_admin_users           = var.k8s_admin_users
+  account_id                = var.account_id
+}
