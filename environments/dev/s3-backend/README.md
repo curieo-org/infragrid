@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
 # Terraform S3 Backend configuration
 
-For new environment s3 backend creation , comment all the content form backend.tf and add below line 
+For new environment creation , comment all the content from backend.tf and add below line 
 
 ```terraform
 
@@ -23,7 +23,7 @@ after s3 bucket and dynamoDB creation , revert the change in backend.tf
 terraform init -migrate-state
 ```
 
-Above process will create s3 backend configuration and store its state in terraform
+Note: Above process will create s3 backend configuration and store its state in terraform
 
 
 ### --------------------------
@@ -47,4 +47,4 @@ Above process will create s3 backend configuration and store its state in terraf
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_dynamodb_table_name"></a> [dynamodb\_table\_name](#input\_dynamodb\_table\_name) | n/a | `string` | `"infragrid-698471419283-tf-lockid"` | no |
+| <a name="input_dynamodb_table_name"></a> [dynamodb\_table\_name](#input\_dynamodb\_table\_name) | n/a | `string` | `"infragrid-698471419283-tf-lockid"` |   yes    |
