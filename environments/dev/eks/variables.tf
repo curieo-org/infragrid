@@ -55,6 +55,14 @@ variable "kube_proxy_version" {
   default = "v1.29.0-eksbuild.1"
 }
 
+variable "coredns_version" {
+  default = "v1.11.1-eksbuild.4"
+}
+
+variable "aws_vpc_cni_version" {
+  default = "v1.16.0-eksbuild.1"
+}
+
 variable "eks_version" {
   default = "1.29"
 }

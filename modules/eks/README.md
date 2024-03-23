@@ -49,25 +49,27 @@ No modules.
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_account_id"></a> [account\_id](#input\_account\_id) | n/a | `any` | n/a | yes |
-| <a name="input_ebs_csi_driver_version"></a> [ebs\_csi\_driver\_version](#input\_ebs\_csi\_driver\_version) | n/a | `any` | n/a | yes |
-| <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | n/a | `any` | n/a | yes |
+| Name                                                                                                                | Description | Type | Default | Required |
+|---------------------------------------------------------------------------------------------------------------------|-------------|------|---------|:--------:|
+| <a name="input_account_id"></a> [account\_id](#input\_account\_id)                                                  | n/a | `any` | n/a | yes |
+| <a name="input_ebs_csi_driver_version"></a> [ebs\_csi\_driver\_version](#input\_ebs\_csi\_driver\_version)          | n/a | `any` | n/a | yes |
+| <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name)                              | n/a | `any` | n/a | yes |
 | <a name="input_eks_general_instance_type"></a> [eks\_general\_instance\_type](#input\_eks\_general\_instance\_type) | n/a | `any` | n/a | yes |
-| <a name="input_eks_version"></a> [eks\_version](#input\_eks\_version) | n/a | `any` | n/a | yes |
-| <a name="input_environment"></a> [environment](#input\_environment) | n/a | `any` | n/a | yes |
-| <a name="input_gpu_instance_type"></a> [gpu\_instance\_type](#input\_gpu\_instance\_type) | n/a | `any` | n/a | yes |
-| <a name="input_k8s_admin_users"></a> [k8s\_admin\_users](#input\_k8s\_admin\_users) | n/a | `list(string)` | n/a | yes |
-| <a name="input_kube_proxy_version"></a> [kube\_proxy\_version](#input\_kube\_proxy\_version) | n/a | `any` | n/a | yes |
-| <a name="input_max_eks_general_nodes"></a> [max\_eks\_general\_nodes](#input\_max\_eks\_general\_nodes) | n/a | `any` | n/a | yes |
-| <a name="input_max_eks_gpu_nodes"></a> [max\_eks\_gpu\_nodes](#input\_max\_eks\_gpu\_nodes) | n/a | `any` | n/a | yes |
-| <a name="input_min_eks_general_nodes"></a> [min\_eks\_general\_nodes](#input\_min\_eks\_general\_nodes) | n/a | `any` | n/a | yes |
-| <a name="input_min_eks_gpu_nodes"></a> [min\_eks\_gpu\_nodes](#input\_min\_eks\_gpu\_nodes) | n/a | `any` | n/a | yes |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `any` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | n/a | `any` | n/a | yes |
-| <a name="input_state_bucket_region"></a> [state\_bucket\_region](#input\_state\_bucket\_region) | n/a | `any` | n/a | yes |
-| <a name="input_vpc_state_bucket"></a> [vpc\_state\_bucket](#input\_vpc\_state\_bucket) | n/a | `any` | n/a | yes |
+| <a name="input_eks_version"></a> [eks\_version](#input\_eks\_version)                                               | n/a | `any` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment)                                                 | n/a | `any` | n/a | yes |
+| <a name="input_gpu_instance_type"></a> [gpu\_instance\_type](#input\_gpu\_instance\_type)                           | n/a | `any` | n/a | yes |
+| <a name="input_k8s_admin_users"></a> [k8s\_admin\_users](#input\_k8s\_admin\_users)                                 | n/a | `list(string)` | n/a | yes |
+| <a name="input_kube_proxy_version"></a> [kube\_proxy\_version](#input\_kube\_proxy\_version)                        | n/a | `any` | n/a | yes |
+| <a name="input_coredns_version"></a> [coredns\_version](#input\_coredns\_version)                                   | n/a | `any` | n/a | yes |
+| <a name="input_aws_vpc_cni_version"></a> [aws\_vpc\_cni\_version](#input\_aws\_vpc\_cni\_version)                   | n/a | `any` | n/a | yes |
+| <a name="input_max_eks_general_nodes"></a> [max\_eks\_general\_nodes](#input\_max\_eks\_general\_nodes)             | n/a | `any` | n/a | yes |
+| <a name="input_max_eks_gpu_nodes"></a> [max\_eks\_gpu\_nodes](#input\_max\_eks\_gpu\_nodes)                         | n/a | `any` | n/a | yes |
+| <a name="input_min_eks_general_nodes"></a> [min\_eks\_general\_nodes](#input\_min\_eks\_general\_nodes)             | n/a | `any` | n/a | yes |
+| <a name="input_min_eks_gpu_nodes"></a> [min\_eks\_gpu\_nodes](#input\_min\_eks\_gpu\_nodes)                         | n/a | `any` | n/a | yes |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets)                                   | n/a | `any` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region)                                                                | n/a | `any` | n/a | yes |
+| <a name="input_state_bucket_region"></a> [state\_bucket\_region](#input\_state\_bucket\_region)                     | n/a | `any` | n/a | yes |
+| <a name="input_vpc_state_bucket"></a> [vpc\_state\_bucket](#input\_vpc\_state\_bucket)                              | n/a | `any` | n/a | yes |
 
 ## Outputs
 

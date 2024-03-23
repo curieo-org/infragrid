@@ -17,4 +17,6 @@ module "eks" {
   kube_proxy_version        = var.kube_proxy_version
   k8s_admin_users           = var.k8s_admin_users
   account_id                = var.account_id
+  coredns_version           = var.coredns_version
+  aws_vpc_cni_version       = var.aws_vpc_cni_version
 }
