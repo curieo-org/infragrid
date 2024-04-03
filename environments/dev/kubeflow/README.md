@@ -83,7 +83,7 @@ data:
     - email: <email address of new user >
       hash: <paste the encrypted password>
       username: user
-      userID: "15841185641784"
+      userID: "15841185641784" # create unique id 
 kind: ConfigMap
 metadata:
   name: dex
