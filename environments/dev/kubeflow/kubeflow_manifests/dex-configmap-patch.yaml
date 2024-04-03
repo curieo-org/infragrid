@@ -1,0 +1,53 @@
+apiVersion: v1
+data:
+  config.yaml: |
+    issuer: http://dex.auth.svc.cluster.local:5556/dex
+    storage:
+      type: kubernetes
+      config:
+        inCluster: true
+    web:
+      http: 0.0.0.0:5556
+    logger:
+      level: "debug"
+      format: text
+    oauth2:
+      skipApprovalScreen: true
+    enablePasswordDB: true
+    staticPasswords:
+    - email: user@example.com
+      hash: $2y$12$1tIagyT7.TEleiv7ASJQh.By4pTaoE92toukritt46kidbFPfrHCm
+      # https://github.com/dexidp/dex/pull/1601/commits
+      # FIXME: Use hashFromEnv instead
+      username: user
+      userID: "15841185641784"
+    - email: raahul@curieo.org
+      hash: $2y$12$tSSJjxgA0s5FgNpOrlxdte3BfjOzb2Onkvczx3W1x0civfmdF1czO
+      username: raahul
+      userID: "15841185641785"      
+    - email: asmi@curieo.org
+      hash: $2y$12$vA6GVrHxcMq1AOsH9sg5sePv0eKeWjt69mlqsDwLfFUt20WH3Qgfu
+      username: ashish
+      userID: "15841185641786"   
+    - email: somesh.fengade@curieo.org
+      hash: $2y$12$lgIB9N99bGOxjRHpYEaE/OTKtahBZ2axq/L7NbatrDw9ZjkS0IHYq
+      username: somesh
+      userID: "15841185641787"   
+    - email: rathijit.paul@curieo.org
+      hash: $2y$12$VDtpIfqtJwC/w31q6plz..OXaiaXvjhin46Y0.qKTN.4GMnPs/0gS
+      username: rathijit
+      userID: "15841185641788"   
+    - email: ivar@curieo.org
+      hash: $2y$12$IqEV46Mn4bymxEIaGHkiOOAbgumS8cSFe2pNEEeoH4ZzJEw0QoAAu
+      username: ivar
+      userID: "15841185641789" 
+    staticClients:
+    # https://github.com/dexidp/dex/pull/1664
+    - idEnv: OIDC_CLIENT_ID
+      redirectURIs: ["/authservice/oidc/callback"]
+      name: 'Dex Login Application'
+      secretEnv: OIDC_CLIENT_SECRET
+kind: ConfigMap
+metadata:
+  name: dex
+  namespace: auth

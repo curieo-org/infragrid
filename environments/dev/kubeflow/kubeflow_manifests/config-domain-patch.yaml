@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  curieo.org: ""
+
+kind: ConfigMap
+metadata:
+  annotations:
+  name: config-domain
+  namespace: knative-serving
