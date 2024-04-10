@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: text-embedding-rule-policy
+  namespace: istio-system
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        ipBlocks:
+        - "*"
+    to:
+    - operation:
+        hosts:
+        - text-embedding.dev.curieo.org
+  selector:
+    matchLabels:
+      app: istio-ingressgateway

@@ -1,0 +1,4 @@
+POST http://text-embedding.dev.curieo.org/embed
+Content-Type: application/json
+Authorization: Bearer e9260789-8d00-42b5-bf11-034e76eba43d
+@test_batch_8.json

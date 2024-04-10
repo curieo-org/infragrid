@@ -1,0 +1,31 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: text-splade-query
+  annotations:
+    prometheus.kserve.io/port: '8082'
+    prometheus.kserve.io/path: "/metrics"
+    serving.kserve.io/enable-prometheus-scraping: "true"
+spec:
+  predictor:
+    minReplicas: 1
+    maxReplicas: 1
+    scaleMetric: concurrency
+    containers:
+      - name: text-splade-doc-container
+        image: ghcr.io/huggingface/text-embeddings-inference:1.2
+        args:
+        - --model-id
+        - naver/efficient-splade-VI-BT-large-query
+        - --pooling 
+        - splade
+        - --dtype
+        - float16
+        - --json-output
+        - --api-key
+        - 5f211870-365a-499a-9700-995fa4794970
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+          requests:
+            nvidia.com/gpu: 1

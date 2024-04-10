@@ -1,0 +1,4 @@
+POST http://text-rerank.dev.curieo.org/rerank
+Content-Type: application/json
+Authorization: Bearer 6c32eb73-76a2-4c31-9e28-41dd416bd1d4
+@test_batch_1.json
