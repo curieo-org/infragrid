@@ -1,0 +1,25 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allowlist-by-paths-transformer
+  namespace: istio-system
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        ipBlocks:
+        - 10.128.0.0/16
+    to:
+    - operation:
+        paths:
+        - /*
+        - /metrics
+        - /healthz
+        - /ready
+        - /wait-for-drain
+        - /v1/models/*
+        - /v2/models/*
+  selector:
+    matchLabels:
+      component: transformer
