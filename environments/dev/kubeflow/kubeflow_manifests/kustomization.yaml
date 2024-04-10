@@ -9,3 +9,5 @@ patchesStrategicMerge:
   - jupyter-web-app-patch.yaml
   - config-domain-patch.yaml
   - kserve-models-web-app-config-patch.yaml
+  - allowlist-by-paths-transformer-authpolicy.yaml
+  - allowlist-by-paths-predit-authpolicy.yaml
