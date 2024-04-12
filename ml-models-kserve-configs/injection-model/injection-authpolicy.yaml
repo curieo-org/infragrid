@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: injection-rule-policy
+  namespace: istio-system
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        ipBlocks:
+        - "*"
+    to:
+    - operation:
+        hosts:
+        - injection.dev.curieo.org
+  selector:
+    matchLabels:
+      app: istio-ingressgateway

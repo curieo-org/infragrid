@@ -1,7 +1,7 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: text-embedding
+  name: toxicity
   annotations:
     prometheus.kserve.io/port: '8082'
     prometheus.kserve.io/path: "/metrics"
@@ -12,16 +12,8 @@ spec:
     maxReplicas: 8
     scaleMetric: concurrency
     containers:
-      - name: text-embedding-container
-        image: ghcr.io/huggingface/text-embeddings-inference:1.2
-        args:
-        - --model-id
-        - mixedbread-ai/mxbai-embed-large-v1
-        - --dtype
-        - float16
-        - --json-output
-        - --api-key
-        - e9260789-8d00-42b5-bf11-034e76eba43d
+      - name: toxicity-container
+        image: 698471419283.dkr.ecr.eu-central-1.amazonaws.com/kserve-prompt-toxicity-model:latest
         resources:
           limits:
             nvidia.com/gpu: 1

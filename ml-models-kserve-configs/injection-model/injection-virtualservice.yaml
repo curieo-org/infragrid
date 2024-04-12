@@ -1,13 +1,13 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: text-splade-query-virtualservice
+  name: injection-virtualservice
   namespace: dev
 spec:
   gateways:
-  - text-splade-query-gateway
+  - injection-gateway
   hosts:
-  - text-splade-query.dev.curieo.org
+  - injection.dev.curieo.org
   http:
   - match:
     - port: 80
