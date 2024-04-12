@@ -9,7 +9,7 @@ metadata:
 spec:
   predictor:
     minReplicas: 1
-    maxReplicas: 1
+    maxReplicas: 8
     scaleMetric: concurrency
     containers:
       - name: text-embedding-container

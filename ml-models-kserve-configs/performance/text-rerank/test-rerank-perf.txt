@@ -1,0 +1,71 @@
+========================================================================================
+
+batch 2
+
+batch 2 -rate=32 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=32 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         960, 32.03, 31.96
+Duration      [total, attack, wait]             30.041s, 29.969s, 71.773ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  47.56ms, 53.204ms, 51.886ms, 55.875ms, 62.743ms, 76.921ms, 121.697ms
+Bytes In      [total, mean]                     259927, 270.76
+Bytes Out     [total, mean]                     8108160, 8446.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+========================================================================================
+
+batch 2
+
+batch 2 -rate=64 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=64 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         1920, 64.03, 45.01
+Duration      [total, attack, wait]             42.654s, 29.984s, 12.669s
+Latencies     [min, mean, 50, 90, 95, 99, max]  124.907ms, 6.549s, 6.541s, 11.566s, 12.187s, 12.67s, 12.811s
+Bytes In      [total, mean]                     520170, 270.92
+Bytes Out     [total, mean]                     16216320, 8446.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+
+========================================================================================
+
+batch 2
+
+batch 2 -rate=128 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=128 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         3840, 128.04, 38.19
+Duration      [total, attack, wait]             59.986s, 29.991s, 29.994s
+Latencies     [min, mean, 50, 90, 95, 99, max]  89.749ms, 20.328s, 24.016s, 30.001s, 30.001s, 30.001s, 30.008s
+Bytes In      [total, mean]                     620673, 161.63
+Bytes Out     [total, mean]                     19349786, 5039.01
+Success       [ratio]                           59.66%
+Status Codes  [code:count]                      0:1549  200:2291
+Error Set:
+Post "http://text-rerank.dev.curieo.org/rerank": dial tcp 0.0.0.0:0->3.124.99.191:80: connect: operation timed out
+Post "http://text-rerank.dev.curieo.org/rerank": dial tcp 0.0.0.0:0->35.157.91.203:80: connect: operation timed out
+Post "http://text-rerank.dev.curieo.org/rerank": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+
+========================================================================================
+
+batch 2
+
+batch 2 -rate=256 -duration=30s
+
+
+vegeta attack -targets=targets.txt -rate=256 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         7680, 256.04, 29.07
+Duration      [total, attack, wait]             58.622s, 29.996s, 28.626s
+Latencies     [min, mean, 50, 90, 95, 99, max]  191.793ms, 15.055s, 7.777s, 30.001s, 30.001s, 30.001s, 30.005s
+Bytes In      [total, mean]                     461607, 60.11
+Bytes Out     [total, mean]                     14391984, 1873.96
+Success       [ratio]                           22.19%
+Status Codes  [code:count]                      0:5976  200:1704
+Error Set:
+Post "http://text-rerank.dev.curieo.org/rerank": dial tcp 0.0.0.0:0->3.124.99.191:80: connect: operation timed out
+Post "http://text-rerank.dev.curieo.org/rerank": dial tcp 0.0.0.0:0->35.157.91.203:80: connect: operation timed out
+Post "http://text-rerank.dev.curieo.org/rerank": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
