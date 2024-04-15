@@ -2,6 +2,7 @@ apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   name: toxicity
+  namespace: dev
   annotations:
     prometheus.kserve.io/port: '8082'
     prometheus.kserve.io/path: "/metrics"
