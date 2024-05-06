@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: qdrant-virtualservice
+  namespace: qdrant
+spec:
+  gateways:
+  - qdrant-gateway
+  hosts:
+  - qdrant.dev.curieo.org
+  http:
+  - match:
+    - port: 80
+    route:
+    - destination:
+        host: qdrant.qdrant.svc.cluster.local
+        port:
+          number: 6333

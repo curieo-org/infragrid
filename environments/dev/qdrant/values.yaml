@@ -1,0 +1,22 @@
+additionalVolumes: 
+  - name: qdrant-storage
+    persistentVolumeClaim:
+      claimName: qdrant-efs-claim
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::698471419283:role/dev-eks-qdrant-iam-role
+
+tolerations:
+- key: "type"
+  operator: "Equal"
+  value: "large-workloads"
+  effect: "NoSchedule"
+
+resources: 
+  limits:
+    cpu: 2
+    memory: 4Gi
+  requests:
+    cpu: 1
+    memory: 1Gi
