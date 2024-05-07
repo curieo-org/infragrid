@@ -70,7 +70,7 @@ config:
     verify_https_client_certificate: false
 
     # Set an api-key.
-    # This key is used to write in the
+    # This key is used to write in the `data digger`
     api_key: ea1db3c7-5b92-45fe-a929-b12584897dd5
     # This key is used to read in the `agency`
     read_only_api_key: d8abfd9a-a496-4791-a1b9-d71cffad3415
