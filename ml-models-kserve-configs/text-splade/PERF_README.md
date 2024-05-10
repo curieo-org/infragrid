@@ -1,8 +1,16 @@
-## Setup Vegeta
+# Perfomance test results for text-splade-doc
+
+## Prerequisites
 
 ```bash
 kubectl run alpine --image alpine --command sleep -- 1d
 kubectl exec -it alpine -- sh
+
+```
+
+## Setup Vegeta
+
+```bash
 
 apk add --update ca-certificates
 mkdir -p /vegeta & cd /vegeta
