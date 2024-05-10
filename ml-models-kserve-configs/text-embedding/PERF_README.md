@@ -1,8 +1,18 @@
+# Perfomance test results for text-embedding
+
+## Prerequisites
+
+Note:- create a  alpine pod if not available
+
+```bash
+kubectl run alpine --image alpine --command sleep -- 1d
+kubectl exec -it alpine -- sh
+
+```
+
 ## Setup Vegeta
 
 ```bash
-
-kubectl exec -it alpine -- sh
 
 apk add --update ca-certificates
 mkdir -p /vegeta & cd /vegeta
