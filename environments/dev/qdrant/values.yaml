@@ -3,6 +3,18 @@ additionalVolumes:
     persistentVolumeClaim:
       claimName: qdrant-efs-claim
 
+# to store persistent storage in efs 
+persistence:
+  accessModes: ["ReadWriteOnce"]
+  size: 500Gi
+  storageClassName: efs-sc
+
+# to enable snapshot using persistent storage in efs 
+snapshotPersistence:
+  enabled: false
+  accessModes: ["ReadWriteOnce"]
+  size: 500Gi      
+
 serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::698471419283:role/dev-eks-qdrant-iam-role
@@ -15,11 +27,11 @@ tolerations:
 
 resources: 
   limits:
-    cpu: 2
-    memory: 4Gi
+    cpu: 6
+    memory: 32Gi
   requests:
-    cpu: 1
-    memory: 1Gi
+    cpu: 3
+    memory: 16Gi
 
 metrics:
   serviceMonitor:
