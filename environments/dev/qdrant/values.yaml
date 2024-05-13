@@ -15,6 +15,13 @@ snapshotPersistence:
   accessModes: ["ReadWriteOnce"]
   size: 500Gi      
 
+podSecurityContext:
+  fsGroup: 50001
+
+containerSecurityContext:
+  runAsUser: 50001
+
+
 serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::698471419283:role/dev-eks-qdrant-iam-role
