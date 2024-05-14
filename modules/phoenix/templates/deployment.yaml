@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.service.replica_count }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        name: {{ .Release.Name }}
+        image: {{ .Values.service.image }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.service.http_port }}
+          name: http
+          protocol: TCP
+        - containerPort: {{ .Values.service.grpc_port }}
+          name: grpc
+          protocol: TCP
+        - containerPort: {{ .Values.service.prometheus_port }}
+          name: prometheus
+          protocol: TCP

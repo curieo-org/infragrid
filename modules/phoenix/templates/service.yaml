@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.service.http_port }}
+      targetPort: {{ .Values.service.http_port }}
+    - name: grpc
+      protocol: TCP
+      port: {{ .Values.service.grpc_port }}
+      targetPort: {{ .Values.service.grpc_port }}
+    - name: prometheus
+      protocol: TCP
+      port: {{ .Values.service.prometheus_port }}
+      targetPort: {{ .Values.service.prometheus_port }}
+  selector:
+    app: {{ .Release.Name }}
+  type: ClusterIP
