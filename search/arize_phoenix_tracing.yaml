@@ -19,6 +19,11 @@ spec:
         image: arizephoenix/phoenix:latest
         ports:
         - containerPort: 6006
+        - containerPort: 4317
+        - containerPort: 9090
+        env:
+          - name: PHOENIX_SQL_DATABASE_URL
+            value: postgresql://<USERNAME>:<PASSWORD>@<HOST>:<PORT>/<DATABASE>
 ---
 apiVersion: v1
 kind: Service
@@ -32,4 +37,12 @@ spec:
       protocol: TCP
       port: 6006
       targetPort: 6006
+    - name: grpc
+      protocol: TCP
+      port: 4317
+      targetPort: 4317
+    - name: prometheus
+      protocol: TCP
+      port: 9090
+      targetPort: 9090
   type: ClusterIP
