@@ -1,0 +1,73 @@
+alertmanager:
+  storage:
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+        storageClassName: efs-sc
+grafana:
+  securityContext:
+    fsGroup: 50001
+    runAsGroup: 50001
+    runAsNonRoot: true
+    runAsUser: 50001
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - disableDeletion: false
+        editable: true
+        folder: ""
+        name: default
+        options:
+          path: /var/lib/grafana/dashboards/default
+        orgId: 1
+        type: file
+  dashboards:
+    default:
+      amazon-rds:
+        datasource: Prometheus
+        gnetId: 11264
+      elasticcache-redis:
+        datasource: Prometheus
+        gnetId: 969
+      karpenter:
+        datasource: Prometheus
+        gnetId: 20398
+      loki:
+        datasource: Prometheus
+        gnetId: 15141
+  persistence:
+    accessModes:
+    - ReadWriteOnce
+    enabled: true
+    finalizers:
+    - kubernetes.io/pvc-protection
+    size: 40Gi
+    storageClassName: efs-sc
+    type: pvc
+
+prometheus:
+  resources:
+    requests:
+      memory: 2Gi
+  retention: 10d
+  tolerations:
+  - effect: NoSchedule
+    key: nvidia.com/gpu
+    operator: Equal
+  - effect: NoSchedule
+    key: type
+    operator: Equal
+    value: large-workloads
+  volumeClaimTemplate:
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests: null
+        storage: 100Gi
+      storageClassName: efs-sc
