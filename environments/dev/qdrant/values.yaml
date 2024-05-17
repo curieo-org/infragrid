@@ -1,19 +1,15 @@
-additionalVolumes: 
-  - name: qdrant-storage
-    persistentVolumeClaim:
-      claimName: qdrant-efs-claim
-
 # to store persistent storage in efs 
 persistence:
   accessModes: ["ReadWriteOnce"]
   size: 500Gi
-  storageClassName: efs-sc
+  storageClassName: gp3
 
 # to enable snapshot using persistent storage in efs 
 snapshotPersistence:
   enabled: false
   accessModes: ["ReadWriteOnce"]
-  size: 500Gi      
+  size: 500Gi   
+  storageClassName: gp3  
 
 podSecurityContext:
   fsGroup: 50001
