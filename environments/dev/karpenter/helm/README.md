@@ -10,9 +10,43 @@ Install Karpenter using helm chart and values.yaml
     steps:
         1. create IAM role with trust policy
         ```json
-
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Sid": "Statement1",
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Service": [
+                                "eks.amazonaws.com",
+                                "ec2.amazonaws.com"
+                            ]
+                        },
+                        "Action": "sts:AssumeRole"
+                    },
+                    {
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Federated": "arn:aws:iam::<accountid>:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/<cluster_oidc>"
+                        },
+                        "Action": "sts:AssumeRoleWithWebIdentity",
+                        "Condition": {
+                            "StringEquals": {
+                                "oidc.eks.eu-central-1.amazonaws.com/id/<cluster_oidc>:sub": "system:serviceaccount:karpenter:karpenter"
+                            }
+                        }
+                    }
+                ]
+            }
         ```
         2. attach existing policy to IAM role
+
+        ```bash
+            aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+            aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+            aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
+        ```
 
 
 
