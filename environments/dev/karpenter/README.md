@@ -225,9 +225,13 @@ kubectl describe deploy/karpenter -n kube-system
 
 ```
 
+
+
 ## Note 
 
-Scale down cluster autoscaler deployment to 0
+1. Default Nodegroup with min 2 instances are always required to deploy karpenter pods , otherwise scaling will not happen because of it .
+
+2. Scale down cluster autoscaler deployment to 0
 
 ```bash
 kubectl scale deploy/cluster-autoscaler -n kube-system --replicas 0
