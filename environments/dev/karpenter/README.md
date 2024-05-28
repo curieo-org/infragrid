@@ -5,10 +5,10 @@ Install Karpenter using helm chart and values.yaml
 
 ## Prerequisites 
 
-    1. IAM Role with appropriate permissions
+A. IAM Role with appropriate permissions
 
-    steps:
-        1. create IAM role with trust policy
+steps:
+  1. create IAM role with trust policy
         ```json
             {
                 "Version": "2012-10-17",
@@ -39,26 +39,25 @@ Install Karpenter using helm chart and values.yaml
                 ]
             }
         ```
-        2. attach existing policy to IAM role
+2. attach existing policy to IAM role
 
-        ```bash
-            aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
-            aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
-            aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
-
-        ```
-
+  ```bash
+    aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+    aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+    aws iam attach-role-policy --role-name KarpenterControllerRole --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+  ```
 
 
-    2. Instance profile 
+
+B. Instance profile 
        
-       attach IAM role created in step 1 to instance profile
-    ```bash
-        aws iam create-instance-profile --instance-profile-name dev-KarpenterInstanceProfile
-        aws iam add-role-to-instance-profile --instance-profile-name dev-KarpenterInstanceProfile --role-name dev-KarpenterControllerRole
+  attach IAM role created in step 1 to instance profile
+  ```bash
+    aws iam create-instance-profile --instance-profile-name dev-KarpenterInstanceProfile
+    aws iam add-role-to-instance-profile --instance-profile-name dev-KarpenterInstanceProfile --role-name dev-KarpenterControllerRole
 
-    ```
-    3. EKS cluster
+  ```
+C. existing EKS cluster
     
 
 ## Installation
