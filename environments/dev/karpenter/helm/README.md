@@ -67,14 +67,14 @@ Install Karpenter using helm chart and values.yaml
 helm repo add karpenter https://charts.karpenter.sh
 helm repo update
 
-helm install karpenter karpenter/karpenter --namespace karpenter --values values.yaml
+helm install karpenter karpenter/karpenter --namespace kube-system --values values.yaml
 
 ```
 
 To apply changes with updated values.yaml
 
 ```bash
-helm upgrade --install karpenter karpenter/karpenter --values values.yaml -n karpenter
+helm upgrade --install karpenter karpenter/karpenter --values values.yaml -n kube-system
 
 ```
 
@@ -221,6 +221,6 @@ https://github.com/aws/karpenter-provider-aws/tree/v0.36.2/examples/v1beta1
 karpenter is installed as deployment in kubernetes , 
 
 ```bash
-kubectl describe deploy/karpenter -n karpenter
+kubectl describe deploy/karpenter -n kube-system
 
 ```
