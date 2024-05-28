@@ -224,3 +224,11 @@ karpenter is installed as deployment in kubernetes ,
 kubectl describe deploy/karpenter -n kube-system
 
 ```
+
+## Note 
+
+Scale down cluster autoscaler deployment to 0
+
+```bash
+kubectl scale deploy/cluster-autoscaler -n kube-system --replicas 0
+```
