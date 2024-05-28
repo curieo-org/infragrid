@@ -8,7 +8,7 @@ aws:
 
 serviceAccount:
   create: true
-  annotations: 
+  annotations:
     "eks.amazonaws.com/role-arn" : "arn:aws:iam::698471419283:role/dev-KarpenterControllerRole"
 
 revisionHistoryLimit: 10
@@ -24,4 +24,3 @@ controller:
     limits:
       cpu: 1
       memory: 1Gi
-

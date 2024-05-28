@@ -81,6 +81,8 @@ helm upgrade --install karpenter karpenter/karpenter --values values.yaml -n kar
 
 ## NodePool Configuration
 
+### m5 nodepool
+
 ```yaml
     apiVersion: karpenter.sh/v1alpha5
     kind: Provisioner
@@ -104,6 +106,104 @@ helm upgrade --install karpenter karpenter/karpenter --values values.yaml -n kar
         karpenter.sh/discovery: "<CLUSTER_NAME>"
     securityGroupSelector:
         karpenter.sh/discovery: "<CLUSTER_NAME>"
+```
+
+### g5 nodepool
+
+```yaml
+
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  name: g5-ondemamd
+spec:
+  template:
+    metadata:
+      labels:
+        role: gpu
+        eks.amazonaws.com/nodegroup: gpu-nodes
+    spec:
+      taints:
+        - key: nvidia.com/gpu
+          effect: NoSchedule
+      requirements:
+        - key: "node.kubernetes.io/instance-type"
+          operator: In
+          values: ["g5.2xlarge", "g5.4xlarge"]
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["on-demand"]
+      nodeClassRef:
+        apiVersion: karpenter.k8s.aws/v1beta1
+        kind: EC2NodeClass
+        name: g5-ondemamd
+  limits:
+    cpu: 8 # update limit to increase the gpu instance capacity
+---
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: EC2NodeClass
+metadata:
+  name: g5-ondemamd
+spec:
+  amiFamily: AL2 # Amazon Linux 2
+  role: "KarpenterNodeRole-dev-eks_cluster"
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster"
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster"
+
+
+
+```
+
+
+### i3 nodepool
+
+
+```yaml
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  name: i3-ondemamd
+spec:
+  template:
+    spec:
+      taints:
+        - key: type
+          value: large-workloads
+          effect: NoSchedule
+      requirements:
+        - key: "node.kubernetes.io/instance-type"
+          operator: In
+          values: ["i3.2xlarge", "i3.4xlarge"]
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["on-demand"]
+      nodeClassRef:
+        apiVersion: karpenter.k8s.aws/v1beta1
+        kind: EC2NodeClass
+        name: i3-ondemamd
+  limits:
+    cpu: 40
+---
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: EC2NodeClass
+metadata:
+  name: i3-ondemamd
+spec:
+  amiFamily: AL2 # Amazon Linux 2
+  role: "KarpenterNodeRole-dev-eks_cluster"
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster"
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster"
+  tags:
+    type: large-workloads
+
 ```
 
 
