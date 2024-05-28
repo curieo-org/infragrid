@@ -58,7 +58,22 @@ B. Instance profile
 
   ```
 C. existing EKS cluster
-    
+
+D. Update aws-auth configmap for cluster 
+
+```bash
+kubectl edit configmap aws-auth -n kube-system
+```
+
+and add these lines in roles section
+
+```yaml
+- groups:
+  - system:bootstrappers
+  - system:nodes
+  rolearn: arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/KarpenterNodeRole-${CLUSTER_NAME}
+  username: system:node:{{EC2PrivateDNSName}}
+```
 
 ## Installation
 
