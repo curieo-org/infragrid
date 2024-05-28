@@ -98,28 +98,46 @@ helm upgrade --install karpenter karpenter/karpenter --values values.yaml -n kub
 ### m5 nodepool
 
 ```yaml
-    apiVersion: karpenter.sh/v1alpha5
-    kind: Provisioner
-    metadata:
-    name: m5-xlarge
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  name: default
+spec:
+  template:
     spec:
-    requirements:
-        # Include general purpose instance families
-        - key: karpenter.k8s.aws/instance-family
-        operator: In
-        values: [m5]
-    providerRef:
+      requirements:
+        - key: "node.kubernetes.io/instance-type"
+          operator: In
+          values: ["m5.2xlarge", "m5.xlarge"]
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["on-demand"]
+      nodeClassRef:
+        apiVersion: karpenter.k8s.aws/v1beta1
+        kind: EC2NodeClass
         name: default
-    ---
-    apiVersion: karpenter.k8s.aws/v1alpha1
-    kind: AWSNodeTemplate
-    metadata:
-    name: default
-    spec:
-    subnetSelector:
-        karpenter.sh/discovery: "<CLUSTER_NAME>"
-    securityGroupSelector:
-        karpenter.sh/discovery: "<CLUSTER_NAME>"
+  limits:
+    cpu: 100
+---
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: EC2NodeClass
+metadata:
+  name: default
+spec:
+  amiFamily: AL2 # Amazon Linux 2
+  role: "KarpenterNodeRole-dev-eks_cluster"
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster" 
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster" 
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        encrypted: true
+        volumeSize: 200Gi
+        volumeType: gp3
 ```
 
 ### g5 nodepool
