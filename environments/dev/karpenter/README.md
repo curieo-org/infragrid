@@ -256,6 +256,7 @@ https://github.com/aws/karpenter-provider-aws/blob/main/charts/karpenter/values.
 
 
 Refer node pool configurations examples here 
+https://karpenter.sh/docs/concepts/nodeclasses/
 
 https://github.com/aws/karpenter-provider-aws/tree/v0.36.2/examples/v1beta1
 
