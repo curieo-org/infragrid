@@ -185,7 +185,12 @@ spec:
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: "dev-eks_cluster"
-
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        encrypted: true
+        volumeSize: 200Gi
+        volumeType: gp3
 
 
 ```
@@ -235,6 +240,12 @@ spec:
         karpenter.sh/discovery: "dev-eks_cluster"
   tags:
     type: large-workloads
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        encrypted: true
+        volumeSize: 200Gi
+        volumeType: gp3    
 
 ```
 
