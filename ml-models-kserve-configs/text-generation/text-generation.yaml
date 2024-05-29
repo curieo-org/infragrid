@@ -21,10 +21,8 @@ spec:
         - refs/pr/68 # <-- https://huggingface.co/microsoft/Phi-3-mini-128k-instruct/discussions/68
         - --trust-remote-code
         - --dtype
-        - float16
+        - bfloat16
         - --json-output
-        - --api-key
-        - 6c32eb73-76a2-4c31-9e28-41dd416bd1d4
         resources:
           limits:
             nvidia.com/gpu: 1
