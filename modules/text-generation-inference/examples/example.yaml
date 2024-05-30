@@ -1,0 +1,5 @@
+model: microsoft/Phi-3-mini-4k-instruct
+revision: refs/pr/64
+resources:
+  limits:
+    nvidia.com/gpu: 1
