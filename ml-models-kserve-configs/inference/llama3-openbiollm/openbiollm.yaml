@@ -16,20 +16,19 @@ spec:
         image: ghcr.io/huggingface/text-generation-inference:2.0
         env:
           - name: HUGGING_FACE_HUB_TOKEN
-            value: "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"
+            value: "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"
         args:
         - --model-id
         - ivarflakstad/Llama3-OpenBioLLM-8B
-        - --trust-remote-code
         - --dtype
         - bfloat16
         - --json-output
         resources:
           limits:
             nvidia.com/gpu: 1
-            cpu: 2
-            memory:  6Gi
+            cpu: 4
+            memory:  16Gi
           requests:
             nvidia.com/gpu: 1
             cpu: 1
-            memory:  4Gi
+            memory:  8Gi
