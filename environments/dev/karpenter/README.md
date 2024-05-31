@@ -205,25 +205,31 @@ kind: NodePool
 metadata:
   name: i3-ondemamd
 spec:
+  limits:
+    cpu: 40
   template:
+    metadata:
+      labels:
+        role: large-workloads
     spec:
-      taints:
-        - key: type
-          value: large-workloads
-          effect: NoSchedule
-      requirements:
-        - key: "node.kubernetes.io/instance-type"
-          operator: In
-          values: ["i3.2xlarge", "i3.4xlarge"]
-        - key: "karpenter.sh/capacity-type"
-          operator: In
-          values: ["on-demand"]
       nodeClassRef:
         apiVersion: karpenter.k8s.aws/v1beta1
         kind: EC2NodeClass
-        name: i3-ondemamd
-  limits:
-    cpu: 40
+        name: i3-ondemand
+      requirements:
+      - key: node.kubernetes.io/instance-type
+        operator: In
+        values:
+        - i3.2xlarge
+        - i3.4xlarge
+      - key: karpenter.sh/capacity-type
+        operator: In
+        values:
+        - on-demand
+      taints:
+      - effect: NoSchedule
+        key: type
+        value: large-workloads
 ---
 apiVersion: karpenter.k8s.aws/v1beta1
 kind: EC2NodeClass
@@ -240,6 +246,63 @@ spec:
         karpenter.sh/discovery: "dev-eks_cluster"
   tags:
     type: large-workloads
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        encrypted: true
+        volumeSize: 200Gi
+        volumeType: gp3    
+
+```
+
+### i3 non-qdrant nodepool
+
+
+```yaml
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  name: i3-non-qdrant
+spec:
+  limits:
+    cpu: 40
+  template:
+    metadata:
+      labels:
+        role: non-qdrant-workloads
+    spec:
+      nodeClassRef:
+        apiVersion: karpenter.k8s.aws/v1beta1
+        kind: EC2NodeClass
+        name: i3-non-qdrant
+      requirements:
+      - key: node.kubernetes.io/instance-type
+        operator: In
+        values:
+        - i3.2xlarge
+        - i3.4xlarge
+      - key: karpenter.sh/capacity-type
+        operator: In
+        values:
+        - on-demand
+      taints:
+      - effect: NoSchedule
+        key: type
+        value: non-qdrant-workloads
+---
+apiVersion: karpenter.k8s.aws/v1beta1
+kind: EC2NodeClass
+metadata:
+  name: i3-non-qdrant
+spec:
+  amiFamily: AL2 # Amazon Linux 2
+  role: "KarpenterNodeRole-dev-eks_cluster"
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster"
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "dev-eks_cluster"
   blockDeviceMappings:
     - deviceName: /dev/xvda
       ebs:
