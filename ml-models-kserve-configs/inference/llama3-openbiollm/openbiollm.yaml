@@ -19,7 +19,7 @@ spec:
             value: "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"
         args:
         - --model-id
-        - aaditya/Llama3-OpenBioLLM-8B
+        - ivarflakstad/Llama3-OpenBioLLM-8B
         - --trust-remote-code
         - --dtype
         - bfloat16
