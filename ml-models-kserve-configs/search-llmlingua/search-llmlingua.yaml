@@ -1,0 +1,25 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: search-llmlingua
+  annotations:
+    prometheus.kserve.io/port: '8082'
+    prometheus.kserve.io/path: "/metrics"
+    serving.kserve.io/enable-prometheus-scraping: "true"
+spec:
+  predictor:
+    minReplicas: 1
+    maxReplicas: 2
+    scaleMetric: concurrency
+    containers:
+      - name: search-llmlingua-container
+        image: 698471419283.dkr.ecr.eu-central-1.amazonaws.com/search-llmlingua:0.0.1
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+            cpu: 2
+            memory:  6Gi 
+          requests:
+            nvidia.com/gpu: 1
+            cpu: 1
+            memory:  4Gi 
