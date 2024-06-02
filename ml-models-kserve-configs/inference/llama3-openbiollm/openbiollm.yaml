@@ -8,6 +8,11 @@ metadata:
     serving.kserve.io/enable-prometheus-scraping: "true"
 spec:
   predictor:
+    tolerations:
+      - key: type
+        operator: "Equal"
+        value: "large-gpu-workloads"
+        effect: "NoSchedule"
     minReplicas: 1
     maxReplicas: 1
     scaleMetric: concurrency
@@ -23,6 +28,8 @@ spec:
         - --dtype
         - bfloat16
         - --json-output
+        - --port
+        - "80"
         resources:
           limits:
             nvidia.com/gpu: 1
