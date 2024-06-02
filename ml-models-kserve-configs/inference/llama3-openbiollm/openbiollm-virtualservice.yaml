@@ -7,7 +7,7 @@ spec:
   gateways:
   - openbiollm-gateway
   hosts:
-  - openbiollm.dev.curieo.org
+  - openbiollm.dev.curieo.ai
   http:
   - match:
     - port: 80

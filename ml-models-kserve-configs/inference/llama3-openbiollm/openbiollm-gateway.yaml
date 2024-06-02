@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - openbiollm.dev.curieo.org
+    - openbiollm.dev.curieo.ai
     port:
       name: http
       number: 80
