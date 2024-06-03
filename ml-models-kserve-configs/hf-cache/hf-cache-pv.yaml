@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: efs-sc
   capacity:
     storage: 40Gi
   accessModes:

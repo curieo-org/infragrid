@@ -26,7 +26,7 @@ spec:
         image: ghcr.io/huggingface/text-generation-inference:2.0
         env:
           - name: HUGGING_FACE_HUB_TOKEN
-            value: "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"
+            value: "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"
         args:
         - --model-id
         - ivarflakstad/Llama3-OpenBioLLM-8B
@@ -37,8 +37,6 @@ spec:
         - "80"
         - --huggingface-hub-cache
         - "/usr/src/data"
-        - --weights-cache-override
-        - "/usr/src/data"
         volumeMounts:
           - name: model-storage
             mountPath: /usr/src/data
@@ -46,7 +44,7 @@ spec:
           limits:
             nvidia.com/gpu: 1
             cpu: 4
-            memory:  16Gi
+            memory:  32Gi
           requests:
             nvidia.com/gpu: 1
             cpu: 1
