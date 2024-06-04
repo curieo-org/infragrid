@@ -16,7 +16,10 @@ spec:
         image: ghcr.io/huggingface/text-generation-inference:2.0
         env:
           - name: HUGGING_FACE_HUB_TOKEN
-            value: "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"
+            valueFrom:
+              secretKeyRef:
+                name: hf-token
+                key: hf-token
         args:
         - --model-id
         - microsoft/Phi-3-mini-4k-instruct
