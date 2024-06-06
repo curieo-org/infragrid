@@ -1,0 +1,4 @@
+POST http://text-splade-doc.dev.curieo.org/embed_sparse
+Content-Type: application/json
+Authorization: Bearer b48d0253-a17e-4328-ba42-d54cd180c2a7
+@test_batch_8.json

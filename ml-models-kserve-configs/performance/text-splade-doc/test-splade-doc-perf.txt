@@ -1,0 +1,165 @@
+
+batch 2
+
+batch 2 -rate=32 -duration=30s
+
+Requests      [total, rate, throughput]         960, 32.03, 32.01
+Duration      [total, attack, wait]             29.994s, 29.968s, 25.727ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  22.678ms, 26.217ms, 25.885ms, 27.332ms, 28.382ms, 34.188ms, 69.476ms
+Bytes In      [total, mean]                     20163840, 21004.00
+Bytes Out     [total, mean]                     1815360, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+=================================================================================================================
+
+batch 2 -rate=64 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=64 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         1920, 64.04, 63.97
+Duration      [total, attack, wait]             30.015s, 29.983s, 31.898ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  23.276ms, 25.972ms, 25.709ms, 26.844ms, 27.743ms, 34.497ms, 76.481ms
+Bytes In      [total, mean]                     40327660, 21003.99
+Bytes Out     [total, mean]                     3630720, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+=================================================================================================================
+
+batch 2 -rate=128 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=128 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         3840, 128.03, 127.92
+Duration      [total, attack, wait]             30.018s, 29.992s, 26.389ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  22.907ms, 25.796ms, 25.487ms, 26.804ms, 27.854ms, 34.677ms, 70.291ms
+Bytes In      [total, mean]                     80653428, 21003.50
+Bytes Out     [total, mean]                     7261440, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:3840
+Error Set:
+
+=================================================================================================================
+
+batch 2 -rate=256 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=256 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         7680, 256.04, 255.03
+Duration      [total, attack, wait]             30.114s, 29.996s, 118.395ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  29.207ms, 166.53ms, 170.351ms, 213.401ms, 218.583ms, 225.6ms, 270.633ms
+Bytes In      [total, mean]                     161538986, 21033.72
+Bytes Out     [total, mean]                     14522880, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:7680
+Error Set:
+
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
+
+batch 4 -rate=32 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=32 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         960, 32.03, 31.99
+Duration      [total, attack, wait]             30.007s, 29.969s, 37.817ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  34.467ms, 40.35ms, 37.587ms, 39.529ms, 46.521ms, 121.049ms, 169.53ms
+Bytes In      [total, mean]                     48995051, 51036.51
+Bytes Out     [total, mean]                     3701760, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+=================================================================================================================
+
+batch 4 -rate=64 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=64 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         1920, 64.04, 63.91
+Duration      [total, attack, wait]             30.041s, 29.984s, 57.439ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  33.547ms, 119.409ms, 113.049ms, 188.69ms, 227.222ms, 297.944ms, 581.394ms
+Bytes In      [total, mean]                     97902801, 50991.04
+Bytes Out     [total, mean]                     7403520, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+=================================================================================================================
+
+batch 4 -rate=128 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=128 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         3840, 128.03, 115.74
+Duration      [total, attack, wait]             33.178s, 29.992s, 3.186s
+Latencies     [min, mean, 50, 90, 95, 99, max]  96.188ms, 1.903s, 1.939s, 3.029s, 3.147s, 3.281s, 3.384s
+Bytes In      [total, mean]                     195812900, 50992.94
+Bytes Out     [total, mean]                     14807040, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:3840
+Error Set:
+
+=================================================================================================================
+
+batch 4 -rate=256 -duration=30s
+
+Requests      [total, rate, throughput]         7680, 256.04, 105.44
+Duration      [total, attack, wait]             59.996s, 29.996s, 30s
+Latencies     [min, mean, 50, 90, 95, 99, max]  134.436ms, 17.794s, 18.099s, 30.001s, 30.001s, 30.001s, 30.002s
+Bytes In      [total, mean]                     322581474, 42002.80
+Bytes Out     [total, mean]                     24393056, 3176.18
+Success       [ratio]                           82.37%
+Status Codes  [code:count]                      0:1354  200:6326
+Error Set:
+Post "http://text-embedding.dev.curieo.org/embed": read tcp 192.168.1.23:56405->3.125.135.0:80: read: operation timed out
+context deadline exceeded (Client.Timeout or context cancellation while reading body)
+Post "http://text-embedding.dev.curieo.org/embed": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+Post "http://text-embedding.dev.curieo.org/embed": read tcp 192.168.1.23:56553->3.125.135.0:80: read: operation timed out
+Post "http://text-embedding.dev.curieo.org/embed": read tcp 192.168.1.23:56381->3.125.135.0:80: read: operation timed out
+
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
+
+batch 8 -rate=32 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=32 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         960, 32.03, 31.98
+Duration      [total, attack, wait]             30.016s, 29.968s, 48.276ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  46.924ms, 51.177ms, 49.281ms, 52.689ms, 55.931ms, 105.916ms, 242.254ms
+Bytes In      [total, mean]                     97792172, 101866.85
+Bytes Out     [total, mean]                     8071680, 8408.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+
+=================================================================================================================
+
+batch 8 -rate=64 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=64 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         1920, 64.04, 51.82
+Duration      [total, attack, wait]             37.053s, 29.984s, 7.069s
+Latencies     [min, mean, 50, 90, 95, 99, max]  115.534ms, 3.826s, 3.845s, 6.514s, 6.867s, 7.15s, 18.592s
+Bytes In      [total, mean]                     195690048, 101921.90
+Bytes Out     [total, mean]                     16143360, 8408.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+=================================================================================================================
+
+batch 8 -rate=128 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=128 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         3840, 128.03, 44.70
+Duration      [total, attack, wait]             59.994s, 29.993s, 30.001s
+Latencies     [min, mean, 50, 90, 95, 99, max]  146.799ms, 19.938s, 22.281s, 30.001s, 30.001s, 30.001s, 30.008s
+Bytes In      [total, mean]                     273350269, 71184.97
+Bytes Out     [total, mean]                     22550256, 5872.46
+Success       [ratio]                           69.84%
+Status Codes  [code:count]                      0:1158  200:2682
+Error Set:
+Post "http://text-embedding.dev.curieo.org/embed": read tcp 192.168.1.23:50293->3.66.49.11:80: read: connection reset by peer
+context deadline exceeded (Client.Timeout or context cancellation while reading body)
+Post "http://text-embedding.dev.curieo.org/embed": context deadline exceeded (Client.Timeout exceeded while awaiting headers)

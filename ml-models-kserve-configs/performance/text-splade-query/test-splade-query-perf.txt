@@ -1,0 +1,160 @@
+
+batch 2
+
+batch 2 -rate=32 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=32 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         960, 32.03, 32.01
+Duration      [total, attack, wait]             29.994s, 29.969s, 24.284ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  21.632ms, 4.475s, 1.501s, 13.466s, 15.03s, 15.851s, 16.62s
+Bytes In      [total, mean]                     6145307, 6401.36
+Bytes Out     [total, mean]                     1815360, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+=================================================================================================================
+
+batch 2 -rate=64 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=64 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         1920, 64.04, 63.99
+Duration      [total, attack, wait]             30.006s, 29.984s, 22.562ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  20.849ms, 23.794ms, 23.584ms, 24.734ms, 25.574ms, 29.216ms, 54.439ms
+Bytes In      [total, mean]                     12289644, 6400.86
+Bytes Out     [total, mean]                     3630720, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+=================================================================================================================
+
+batch 2 -rate=128 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=128 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         3840, 128.04, 127.94
+Duration      [total, attack, wait]             30.014s, 29.991s, 22.989ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  20.534ms, 23.801ms, 23.485ms, 24.849ms, 25.805ms, 32.938ms, 65.962ms
+Bytes In      [total, mean]                     24579247, 6400.85
+Bytes Out     [total, mean]                     7261440, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:3840
+Error Set:
+
+=================================================================================================================
+
+batch 2 -rate=256 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=256 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         7680, 256.03, 255.83
+Duration      [total, attack, wait]             30.02s, 29.996s, 23.403ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  20.107ms, 23.926ms, 23.56ms, 25.189ms, 26.356ms, 34.01ms, 69.455ms
+Bytes In      [total, mean]                     49158314, 6400.82
+Bytes Out     [total, mean]                     14522880, 1891.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:7680
+Error Set:
+
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
+
+batch 4 -rate=32 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=32 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         960, 32.03, 31.99
+Duration      [total, attack, wait]             30.007s, 29.969s, 37.817ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  34.467ms, 40.35ms, 37.587ms, 39.529ms, 46.521ms, 121.049ms, 169.53ms
+Bytes In      [total, mean]                     48995051, 51036.51
+Bytes Out     [total, mean]                     3701760, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+=================================================================================================================
+
+batch 4 -rate=64 -duration=30s
+
+Requests      [total, rate, throughput]         1920, 64.04, 63.98
+Duration      [total, attack, wait]             30.01s, 29.983s, 26.841ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  23.484ms, 26.444ms, 26.051ms, 27.527ms, 28.401ms, 34.991ms, 67.492ms
+Bytes In      [total, mean]                     27520365, 14333.52
+Bytes Out     [total, mean]                     7403520, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+=================================================================================================================
+
+batch 4 -rate=128 -duration=30s
+
+Requests      [total, rate, throughput]         3840, 128.04, 127.93
+Duration      [total, attack, wait]             30.017s, 29.991s, 25.907ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  23.299ms, 26.718ms, 26.105ms, 28.033ms, 29.68ms, 41.49ms, 85.65ms
+Bytes In      [total, mean]                     55040108, 14333.36
+Bytes Out     [total, mean]                     14807040, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:3840
+Error Set:
+
+=================================================================================================================
+
+batch 4 -rate=256 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=256 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         7680, 256.03, 178.08
+Duration      [total, attack, wait]             43.128s, 29.996s, 13.131s
+Latencies     [min, mean, 50, 90, 95, 99, max]  74.203ms, 7.007s, 7.117s, 12.15s, 12.745s, 13.147s, 13.249s
+Bytes In      [total, mean]                     110023740, 14326.01
+Bytes Out     [total, mean]                     29614080, 3856.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:7680
+Error Set:
+
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
+
+batch 8 -rate=32 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=32 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         960, 32.03, 32.00
+Duration      [total, attack, wait]             30.001s, 29.969s, 32.008ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  30.585ms, 33.516ms, 32.89ms, 35.168ms, 36.966ms, 47.682ms, 84.528ms
+Bytes In      [total, mean]                     29871009, 31115.63
+Bytes Out     [total, mean]                     8071680, 8408.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:960
+Error Set:
+
+
+=================================================================================================================
+
+batch 8 -rate=64 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=64 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         1920, 64.04, 63.96
+Duration      [total, attack, wait]             30.017s, 29.984s, 32.967ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  29.196ms, 32.486ms, 31.893ms, 33.583ms, 35.219ms, 48.6ms, 73.969ms
+Bytes In      [total, mean]                     59741727, 31115.48
+Bytes Out     [total, mean]                     16143360, 8408.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:1920
+Error Set:
+
+=================================================================================================================
+
+batch 8 -rate=128 -duration=30s
+
+vegeta attack -targets=targets.txt -rate=128 -duration=30s | vegeta report
+Requests      [total, rate, throughput]         3840, 128.03, 0.00
+Duration      [total, attack, wait]             29.992s, 29.992s, 76.125µs
+Latencies     [min, mean, 50, 90, 95, 99, max]  13.791µs, 12.538ms, 72.71µs, 136.089µs, 170.12µs, 564.43ms, 860.594ms
+Bytes In      [total, mean]                     0, 0.00
+Bytes Out     [total, mean]                     0, 0.00
+Success       [ratio]                           0.00%
+Status Codes  [code:count]                      0:3840
+Error Set:
+Post "http://text-splade-query.dev.curieo.org/embed_sparse": lookup text-splade-query.dev.curieo.org on 192.168.1.1:53: no such host
+
+=================================================================================================================

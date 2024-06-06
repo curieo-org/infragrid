@@ -8,12 +8,20 @@ metadata:
     serving.kserve.io/enable-prometheus-scraping: "true"
 spec:
   predictor:
-    minReplicas: 0
-    maxReplicas: 8
+    minReplicas: 1
+    maxReplicas: 2
     scaleMetric: concurrency
     containers:
-      - name: toxicity-container
-        image: 698471419283.dkr.ecr.eu-central-1.amazonaws.com/kserve-prompt-toxicity-model:latest
+      - name: toxicity
+        image: ghcr.io/huggingface/text-embeddings-inference:1.2
+        args:
+        - --model-id
+        - JungleLee/bert-toxic-comment-classification
+        - --dtype
+        - float16
+        - --json-output
+        - --api-key
+        - d86c23e3-c2b4-4d2f-8854-e1ed29a5960d
         resources:
           limits:
             nvidia.com/gpu: 1
