@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hf-cache-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: efs-sc
+  capacity:
+    storage: 40Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/usr/src/data"

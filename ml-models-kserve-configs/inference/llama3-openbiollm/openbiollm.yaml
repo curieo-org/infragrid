@@ -17,12 +17,16 @@ spec:
     minReplicas: 1
     maxReplicas: 1
     scaleMetric: concurrency
+    volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: hf-cache-pv-claim
     containers:
       - name: text-generation-container
         image: ghcr.io/huggingface/text-generation-inference:2.0
         env:
           - name: HUGGING_FACE_HUB_TOKEN
-            value: "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"
+            value: "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"
         args:
         - --model-id
         - ivarflakstad/Llama3-OpenBioLLM-8B
@@ -31,11 +35,16 @@ spec:
         - --json-output
         - --port
         - "80"
+        - --huggingface-hub-cache
+        - "/usr/src/data"
+        volumeMounts:
+          - name: model-storage
+            mountPath: /usr/src/data
         resources:
           limits:
             nvidia.com/gpu: 1
             cpu: 4
-            memory:  16Gi
+            memory:  32Gi
           requests:
             nvidia.com/gpu: 1
             cpu: 1
