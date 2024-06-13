@@ -1,0 +1,116 @@
+apiVersion: ray.io/v1
+kind: RayService
+metadata:
+  name: llama3
+  namespace: rayservice
+spec:
+  deploymentUnhealthySecondThreshold: 900
+  rayClusterConfig:
+    headGroupSpec:
+      headService:
+        metadata:
+          name: llama3
+          namespace: rayservice
+      rayStartParams:
+        dashboard-host: 0.0.0.0
+      template:
+        spec:
+          containers:
+          - env:
+            - name: HUGGING_FACE_HUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: hf-token
+                  name: hf-token
+            - name: LD_LIBRARY_PATH
+              value: /home/ray/anaconda3/lib
+            image: 698471419283.dkr.ecr.eu-central-1.amazonaws.com/curieo-llama3:1.0  #changed from public.ecr.aws/data-on-eks/ray-serve-inf2-llama3:latest
+            imagePullPolicy: Always
+            lifecycle:
+              preStop:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -c
+                  - ray stop
+            name: head
+            ports:
+            - containerPort: 6379
+              name: gcs
+              protocol: TCP
+            - containerPort: 8265
+              name: dashboard
+              protocol: TCP
+            - containerPort: 10001
+              name: client
+              protocol: TCP
+            - containerPort: 8000
+              name: serve
+              protocol: TCP
+            resources:
+              limits:
+                cpu: 4
+                memory: 20Gi
+              requests:
+                cpu: 4
+                memory: 20Gi
+            volumeMounts:
+            - mountPath: /tmp/ray
+              name: ray-logs
+          tolerations:
+          - effect: NoSchedule
+            key: aws.amazon.com/neuron
+            operator: Exists
+          volumes:
+          - emptyDir: {}
+            name: ray-logs
+    rayVersion: 2.21.0
+    workerGroupSpecs:
+    - groupName: inf2
+      maxReplicas: 1
+      minReplicas: 1
+      numOfHosts: 1
+      rayStartParams: {}
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - env:
+            - name: LD_LIBRARY_PATH
+              value: /home/ray/anaconda3/lib
+            - name: HUGGING_FACE_HUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: hf-token
+                  name: hf-token
+            image: 698471419283.dkr.ecr.eu-central-1.amazonaws.com/curieo-llama3:1.0  #changed from public.ecr.aws/data-on-eks/ray-serve-inf2-llama3:latest
+            imagePullPolicy: Always
+            lifecycle:
+              preStop:
+                exec:
+                  command:
+                  - /bin/sh
+                  - -c
+                  - ray stop
+            name: worker
+            resources:
+              limits:
+                aws.amazon.com/neuron: "1"
+                cpu: "26"
+                memory: 100G
+              requests:
+                aws.amazon.com/neuron: "1"
+                cpu: "26"
+                memory: 100G
+          tolerations:
+          - effect: NoSchedule
+            key: aws.amazon.com/neuron
+            operator: Exists
+  serveConfigV2: |
+    applications:
+      - name: llama3
+        import_path: ray_serve_llama3:entrypoint
+        runtime_env:
+          env_vars:
+            MODEL_ID: meta-llama/Meta-Llama-3-8B-Instruct
+  serviceUnhealthySecondThreshold: 900
