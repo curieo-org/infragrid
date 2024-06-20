@@ -7,7 +7,7 @@ spec:
   gateways:
   - toxicity-gateway
   hosts:
-  - toxicity.dev.curieo.org
+  - toxicity.dev.curieo.ai
   http:
   - match:
     - port: 80

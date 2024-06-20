@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - grafana.dev.curieo.org
+    - grafana.dev.curieo.ai
     port:
       name: http
       number: 80

@@ -7,7 +7,7 @@ spec:
   gateways:
   - text-generation-gateway
   hosts:
-  - text-generation.dev.curieo.org
+  - text-generation.dev.curieo.ai
   http:
   - match:
     - port: 80
