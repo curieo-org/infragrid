@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig":
+      { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-central-1:698471419283:certificate/37e3371a-ff99-4654-9cb1-a9809c132a32
+    alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
+    alb.ingress.kubernetes.io/healthcheck-port: "32488"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/load-balancer-attributes: deletion_protection.enabled=true
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS-1-1-2017-01
+    alb.ingress.kubernetes.io/target-type: instance
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"alb.ingress.kubernetes.io/actions.ssl-redirect":"{\"Type\": \"redirect\", \"RedirectConfig\": { \"Protocol\": \"HTTPS\", \"Port\": \"443\", \"StatusCode\": \"HTTP_301\"}}","alb.ingress.kubernetes.io/certificate-arn":"arn:aws:acm:eu-central-1:698471419283:certificate/37e3371a-ff99-4654-9cb1-a9809c132a32","alb.ingress.kubernetes.io/healthcheck-path":"/healthz/ready","alb.ingress.kubernetes.io/healthcheck-port":"31455","alb.ingress.kubernetes.io/listen-ports":"[{\"HTTPS\":443}, {\"HTTP\":80}]","alb.ingress.kubernetes.io/load-balancer-attributes":"deletion_protection.enabled=true","alb.ingress.kubernetes.io/scheme":"internal","alb.ingress.kubernetes.io/ssl-policy":"ELBSecurityPolicy-TLS-1-1-2017-01","alb.ingress.kubernetes.io/target-type":"instance"},"name":"istio-ingress-private","namespace":"istio-system"},"spec":{"ingressClassName":"alb","rules":[{"http":{"paths":[{"backend":{"service":{"name":"istio-ingressgateway","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+  creationTimestamp: "2024-06-12T05:55:58Z"
+  finalizers:
+  - ingress.k8s.aws/resources
+  generation: 2
+  name: istio-ingress-private
+  namespace: istio-system
+  resourceVersion: "75651564"
+  uid: 5d96aef5-5e34-4cb6-8875-949ca2004a62
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: istio-ingressgateway
+            port:
+              number: 443
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: internal-k8s-istiosys-istioing-764aee7bb7-429413829.eu-central-1.elb.amazonaws.com
