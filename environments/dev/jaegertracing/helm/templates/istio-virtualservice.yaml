@@ -14,6 +14,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: jaeger-query.{{ .Release.Namespace }}.svc.cluster.local
+            host: {{ .Release.Name }}-query.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 80
