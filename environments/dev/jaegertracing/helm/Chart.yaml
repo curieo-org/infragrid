@@ -1,0 +1,9 @@
+apiVersion: v2
+name: jaegertracing
+description: A Helm chart for Kubernetes
+version: 1.0.0
+
+dependencies:
+  - name: jaeger
+    repository: https://jaegertracing.github.io/helm-charts
+    version: 3.0.10

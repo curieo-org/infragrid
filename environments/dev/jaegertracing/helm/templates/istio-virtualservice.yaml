@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-admin-virtualservice
+  namespace: {{ .Release.Namespace }}
+spec:
+  gateways:
+    - {{ .Release.Name }}-admin-gateway
+  hosts:
+    - {{ .Release.Name }}-admin.{{ .Values.domain_name }}
+  http:
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: jaeger-query.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 80

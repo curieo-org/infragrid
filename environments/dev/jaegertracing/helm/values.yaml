@@ -1,0 +1,42 @@
+
+domain_name: "dev.curieo.ai"
+
+jaeger:
+  storage:
+    # allowed values (cassandra, elasticsearch, grpc-plugin, badger, memory)
+    type: cassandra
+  cassandra:
+    ## Pod Security Context
+    securityContext:
+      enabled: true
+      fsGroup: 999
+      runAsUser: 999  
+    ## Persist data to a persistent volume
+    persistence:
+      enabled: true
+      storageClass: "gp3"
+      accessMode: ReadWriteOnce
+      size: 20Gi
+  collector:
+    service:
+      grpc:
+        port: 14250
+        # nodePort:
+      # httpPort: can accept spans directly from clients in jaeger.thrift format
+      http:
+        port: 14268
+        # nodePort:
+      # can accept Zipkin spans in JSON or Thrift
+      zipkin:
+        {}
+        # port: 9411
+      # nodePort:
+      otlp:
+        grpc:
+          name: otlp-grpc
+          port: 4317
+          # nodePort:
+        http:
+          name: otlp-http
+          port: 4318
+          # nodePort:
