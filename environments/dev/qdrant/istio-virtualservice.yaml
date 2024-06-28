@@ -7,7 +7,7 @@ spec:
   gateways:
   - qdrant-gateway
   hosts:
-  - qdrant.dev.curieo.org
+  - qdrant.dev.curieo.ai
   http:
   - match:
     - port: 80

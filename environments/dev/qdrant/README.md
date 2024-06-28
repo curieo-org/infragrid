@@ -17,7 +17,7 @@ helm upgrade --install qdrant qdrant/qdrant --values values.yaml -n qdrant
 
 Access dashboard using 
 
-https://qdrant.dev.curieo.org/dashboard
+https://qdrant.dev.curieo.ai/dashboard
 
 
 Refer additional values for helm chart in 

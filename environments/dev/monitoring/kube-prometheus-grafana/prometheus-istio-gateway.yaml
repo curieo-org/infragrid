@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - prometheus.dev.curieo.org
+    - prometheus.dev.curieo.ai
     port:
       name: http
       number: 80

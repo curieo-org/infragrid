@@ -7,7 +7,7 @@ spec:
   gateways:
   - text-rerank-gateway
   hosts:
-  - text-rerank.dev.curieo.org
+  - text-rerank.dev.curieo.ai
   http:
   - match:
     - port: 80

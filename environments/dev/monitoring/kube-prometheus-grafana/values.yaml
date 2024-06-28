@@ -60,9 +60,16 @@ prometheus:
     key: nvidia.com/gpu
     operator: Equal
   - effect: NoSchedule
+    key: aws.amazon.com/neuron
+    operator: Equal    
+  - effect: NoSchedule
     key: type
     operator: Equal
     value: large-workloads
+  - effect: NoSchedule
+    key: type
+    operator: Equal
+    value: non-qdrant-workloads   
   volumeClaimTemplate:
     spec:
       accessModes:

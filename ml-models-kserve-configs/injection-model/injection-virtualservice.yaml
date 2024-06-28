@@ -7,7 +7,7 @@ spec:
   gateways:
   - injection-gateway
   hosts:
-  - injection.dev.curieo.org
+  - injection.dev.curieo.ai
   http:
   - match:
     - port: 80

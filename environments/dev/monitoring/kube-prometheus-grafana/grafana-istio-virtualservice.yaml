@@ -7,7 +7,7 @@ spec:
   gateways:
   - grafana-gateway
   hosts:
-  - grafana.dev.curieo.org
+  - grafana.dev.curieo.ai
   http:
   - match:
     - port: 80

@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - alertmanager.dev.curieo.org
+    - alertmanager.dev.curieo.ai
     port:
       name: http
       number: 80

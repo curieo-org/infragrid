@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - injection.dev.curieo.org
+    - injection.dev.curieo.ai
     port:
       name: http
       number: 80
