@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-cache-virtualservice
+  namespace: {{ .Release.Namespace }}
+spec:
+  gateways:
+    - {{ .Release.Name }}-cache-gateway
+  hosts:
+    - {{ .Release.Name }}.{{ .Values.domain_name }}
+  http:
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: {{ .Release.Name }}-master.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 6379
