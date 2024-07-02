@@ -153,3 +153,8 @@ fi
 echo "😀 Successfully installed KServe"
 
 kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec": {"type": "NodePort"}}
+
+ISTIO_HEALTH_CHECK_PORT=$(kubectl get svc istio-ingressgateway -n istio-system -o=jsonpath='{.spec.ports[?(@.name=="status-port")].nodePort}')
+
+kubectl patch ingress istio-ingressgateway -n istio-system --type='json' -p='[{"op": "add", "path": "/metadata/annotations/alb.ingress.kubernetes.io~1healthcheck-port", "value": "${ISTIO_HEALTH_CHECK_PORT}"}]'
+
