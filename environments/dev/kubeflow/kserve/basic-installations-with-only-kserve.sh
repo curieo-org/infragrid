@@ -151,3 +151,5 @@ EOF
 kubectl patch cm inferenceservice-config -n kserve --type=merge --patch-file=deploy-config-patch.yaml
 fi
 echo "😀 Successfully installed KServe"
+
+kubectl patch svc istio-ingressgateway -n istio-system -p '{"spec": {"type": "NodePort"}}
