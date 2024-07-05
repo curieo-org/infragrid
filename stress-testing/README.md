@@ -10,7 +10,12 @@
 ## To start the k6 stress testing, Run the following command :
 
 ```
-k6 run --out web-dashboard script.js
+k6 run -e AUTH_TOKEN_TOXICITY=your_toxicity_token \
+       -e AUTH_TOKEN_EMBEDDING_QUERY=your_embedding_query_token \
+       -e AUTH_TOKEN_SPLADE_DOC=your_splade_doc_token \
+       -e SPLADE_COOKIE=your_splade_cookie \
+       script.js
+
 ```
  - Replace web-dashboard with the available types if needed : cloud, csv, experimental-prometheus-rw, influxdb, json, statsd
 
