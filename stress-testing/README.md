@@ -52,6 +52,8 @@ toxicity      ✓ [======================================] 0000/0100 VUs  10s  1
 
 ```
 
+![](https://github-production-user-asset-6210df.s3.amazonaws.com/91361382/346125577-7b69f032-ce2d-4838-869b-142adfaefbf8.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240705%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240705T124332Z&X-Amz-Expires=300&X-Amz-Signature=44d663cd5f9c85699e5e3a246d7fd7ca465d05aeabef6895b90666670955fae8&X-Amz-SignedHeaders=host&actor_id=91361382&key_id=0&repo_id=772480766)
+
 ### Change the below parameters to adjust the stress on the server
 
 ```
