@@ -8,7 +8,7 @@ const MaxVUs = 2000;
 
 export let options = {
     scenarios: {
-        scenario1: {
+        llmlingua: {
             executor: 'constant-arrival-rate',
             rate: RPS,
             timeUnit: '1s',
@@ -17,7 +17,7 @@ export let options = {
             maxVUs: MaxVUs,
             exec: 'llmlingua',
         },
-        // scenario2: {
+        // searchAPI: {
         //     executor: 'constant-arrival-rate',
         //     rate: RPS,
         //     timeUnit: '1s',
@@ -26,7 +26,7 @@ export let options = {
         //     maxVUs: MaxVUs,
         //     exec: 'searchAPI',
         // },
-        scenario3: {
+        toxicity: {
             executor: 'constant-arrival-rate',
             rate: RPS,
             timeUnit: '1s',
@@ -35,7 +35,7 @@ export let options = {
             maxVUs: MaxVUs,
             exec: 'toxicity',
         },
-        scenario4: {
+        textEmbedding: {
             executor: 'constant-arrival-rate',
             rate: RPS,
             timeUnit: '1s',
@@ -44,7 +44,7 @@ export let options = {
             maxVUs: MaxVUs,
             exec: 'textEmbedding',
         },
-        scenario5: {
+        spladeQuery: {
             executor: 'constant-arrival-rate',
             rate: RPS,
             timeUnit: '1s',
@@ -53,7 +53,7 @@ export let options = {
             maxVUs: MaxVUs,
             exec: 'spladeQuery', // Function to be executed
         },
-        scenario6: {
+        spladeDoc: {
             executor: 'constant-arrival-rate',
             rate: RPS,
             timeUnit: '1s',
