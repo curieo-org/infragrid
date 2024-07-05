@@ -44,7 +44,6 @@ export let options = {
             maxVUs: MaxVUs,
             exec: 'textEmbedding',
         },
-
         scenario5: {
             executor: 'constant-arrival-rate',
             rate: RPS,
@@ -52,7 +51,16 @@ export let options = {
             duration: Duration,
             preAllocatedVUs: PreAllocatedVUs,
             maxVUs: MaxVUs,
-            exec: 'sparseEmbedding', // Function to be executed
+            exec: 'spladeQuery', // Function to be executed
+        },
+        scenario6: {
+            executor: 'constant-arrival-rate',
+            rate: RPS,
+            timeUnit: '1s',
+            duration: Duration,
+            preAllocatedVUs: PreAllocatedVUs,
+            maxVUs: MaxVUs,
+            exec: 'spladeDoc', // Function to be executed
         },
         
 
@@ -159,13 +167,13 @@ export function textEmbedding() {
     console.log('POST Response body:', res.body);
 
     check(res, {
-        'textEmbedding POST status was 200': (r) => r.status == 200,
+        'TextEmbedding POST status was 200': (r) => r.status == 200,
     });
 
     sleep(1);
 }
 
-export function sparseEmbedding() {
+export function spladeQuery() {
     // POST request
     let url = 'https://text-splade-query.dev.curieo.ai/embed_sparse';
     let headers = {
@@ -192,6 +200,32 @@ export function sparseEmbedding() {
 
     check(res, {
         'SpladeQuery POST status was 200': (r) => r.status == 200,
+    });
+
+    sleep(1);
+}
+
+export function spladeDoc() {
+    // POST request
+    let url = 'http://text-splade-doc.dev.curieo.ai/embed_sparse';
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer b48d0253-a17e-4328-ba42-d54cd180c2a7',
+        'Cookie': 'oidc_state_csrf=MTcxMjU5ODUzOXxOd3dBTkVoUlJEWTNVMDVZTkRSRE1qUXlRVWRWUVZjeVNEUXpVVVJGU1ZCTU1rSlJUalJLVFZZMFIwNUlUVFZIV2pReVFVUlhOMUU9fNpD7eZ1JEpZAc36FIuXyU3_JYEKHxC043pQEWlMeeTR'
+    };
+    let body = JSON.stringify({
+        "inputs": [
+            "Gastric cancer is the leading cause of cancer-related mortality across the world, with poor prognosis and a median overall survival of ≤12 months for advanced stage gastric cancer. Environmental, genetic and other predisposing factors contribute to the development of gastric cancer and a predominant factor was found to be infection of Helicobacter pylori Advances in understanding the deranged signalling pathways that are critical for normal cellular homeostasis helped in the development of novel drugs that target specific proteins and pathways to curtail the growth of gastric cancer. Genetic studies revealed several single nucleotide polymorphisms, chromosomal aberrations and epigenetic alterations that likely play a major role in elevating the susceptibility to develop gastric cancer. Methylation pattern of specific genes may likely prove to be a valid biomarker for early detection of gastric cancer, but much progress is needed to establish specific markers. Important developments have been made in targeting human epidermal growth factor receptor-2 and vascular endothelial growth factor receptor 2 for treating advanced gastro-oesophageal junction cancer, using specific monoclonal antibodies. Lack of efficacy with regard to targeting other signalling pathways including mesenchymal-epithelial transition/hepatocyte growth factor and mammalian target of rapamycin is probably due to suboptimal patient selection for these clinical trials, which is probably due to the lack of appropriate biomarkers, to decide on responsive patient population. Besides the development of antagonists for the cell growth-related signalling pathways, advances are also being made to tackle gastric cancer by immunotherapies, targeting immune check-points, which may hold promise for better treatment options in future."
+        ]
+    });
+
+    let res = http.post(url, body, { headers: headers });
+
+    console.log('POST Response status:', res.status);
+    console.log('POST Response body:', res.body);
+
+    check(res, {
+        'SpladeDoc status was 200': (r) => r.status == 200,
     });
 
     sleep(1);
