@@ -1,5 +1,7 @@
 import http from 'k6/http';
-import { check, sleep } from 'k6';
+import { check, sleep, group } from 'k6';
+import { Counter, Rate, Trend } from 'k6/metrics';
+
 
 const RPS = 10;
 const Duration = '10s';
@@ -68,6 +70,14 @@ export let options = {
     },
 };
 
+// Trends to track the latency of each function
+
+const llmlinguaLatency = new Trend('llmlingua_latency');
+const toxicityLatency = new Trend('toxicity_latency');
+const textEmbeddingLatency = new Trend('textEmbedding_latency');
+const spladeQueryLatency = new Trend('spladeQuery_latency');
+const spladeDocLatency = new Trend('spladeDoc_latency');
+
 // Read the content of the file in the global scope
 const contextTexts = open('./assets/llmlingua.txt').split('\n');
 
@@ -85,6 +95,7 @@ export function llmlingua() {
         });
 
         let postRes = http.post(postUrl, postBody, { headers: postHeaders });
+        llmlinguaLatency.add(postRes.timings.duration);
 
         console.log('POST Response status:', postRes.status);
         console.log('POST Response body:', postRes.body);
@@ -132,6 +143,7 @@ export function toxicity() {
         });
 
         let res = http.post(url, body, { headers: headers });
+        toxicityLatency.add(res.timings.duration);
 
         console.log('POST Response status:', res.status);
         console.log('POST Response body:', res.body);
@@ -161,6 +173,7 @@ export function textEmbedding() {
         });
 
         let res = http.post(url, body, { headers: headers });
+        textEmbeddingLatency.add(res.timings.duration);
 
         console.log('POST Response status:', res.status);
         console.log('POST Response body:', res.body);
@@ -187,6 +200,7 @@ export function spladeQuery() {
         });
 
         let res = http.post(url, body, { headers: headers });
+        spladeQueryLatency.add(res.timings.duration);
 
         console.log('POST Response status:', res.status);
         console.log('POST Response body:', res.body);
@@ -217,6 +231,7 @@ export function spladeDoc() {
         });
 
         let res = http.post(url, body, { headers: headers });
+        spladeDocLatency.add(res.timings.duration);
 
         console.log('POST Response status:', res.status);
         console.log('POST Response body:', res.body);
