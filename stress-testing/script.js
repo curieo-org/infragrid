@@ -82,7 +82,7 @@ const spladeDocLatency = new Trend('spladeDoc_latency');
 const contextTexts = open('./assets/llmlingua.txt').split('\n');
 
 export function llmlingua() {
-    try {
+
         let postUrl = 'http://search-llmlingua.dev.curieo.ai/compress';
         let postHeaders = {
             'Content-Type': 'application/json',
@@ -97,17 +97,13 @@ export function llmlingua() {
         let postRes = http.post(postUrl, postBody, { headers: postHeaders });
         llmlinguaLatency.add(postRes.timings.duration);
 
-        console.log('POST Response status:', postRes.status);
-        console.log('POST Response body:', postRes.body);
-
         check(postRes, {
             'LLMLingua POST status was 200': (r) => r.status == 200,
         });
-    } catch (error) {
-        console.error('Error in llmlingua function:', error);
-    } finally {
-        sleep(1);
-    }
+        
+        if (postRes.status >= 300) {
+            console.error('Error in llmlingua POST request:', postRes.body);
+        }
 }
 
 
@@ -132,7 +128,6 @@ export function llmlingua() {
 // }
 
 export function toxicity() {
-    try {
         let url = 'https://toxicity.dev.curieo.ai/predict';
         let headers = {
             'Content-Type': 'application/json',
@@ -145,24 +140,20 @@ export function toxicity() {
         let res = http.post(url, body, { headers: headers });
         toxicityLatency.add(res.timings.duration);
 
-        console.log('POST Response status:', res.status);
-        console.log('POST Response body:', res.body);
-
         check(res, {
             'Toxicity POST status was 200': (r) => r.status == 200,
         });
-    } catch (error) {
-        console.error('Error in toxicity function:', error);
-    } finally {
-        sleep(1);
-    }
+
+        if (res.status >= 300) {
+            console.error('Error in Toxicity POST request:', res.body);
+        }
 }
 
 // Read the content of the file in the global scope
 const inputs = open('./assets/textembedding.txt').split('\n');
 
 export function textEmbedding() {
-    try {
+
         let url = 'http://text-embedding.dev.curieo.ai/embed';
         let headers = {
             'Content-Type': 'application/json',
@@ -175,21 +166,17 @@ export function textEmbedding() {
         let res = http.post(url, body, { headers: headers });
         textEmbeddingLatency.add(res.timings.duration);
 
-        console.log('POST Response status:', res.status);
-        console.log('POST Response body:', res.body);
-
         check(res, {
             'TextEmbedding POST status was 200': (r) => r.status == 200,
         });
-    } catch (error) {
-        console.error('Error in textEmbedding function:', error);
-    } finally {
-        sleep(1);
-    }
+
+        if (res.status >= 300) {
+            console.error('Error in TextEmbedding POST request:', res.body);
+        }
 }
 
 export function spladeQuery() {
-    try {
+
         let url = 'https://text-splade-query.dev.curieo.ai/embed_sparse';
         let headers = {
             'Content-Type': 'application/json',
@@ -202,24 +189,19 @@ export function spladeQuery() {
         let res = http.post(url, body, { headers: headers });
         spladeQueryLatency.add(res.timings.duration);
 
-        console.log('POST Response status:', res.status);
-        console.log('POST Response body:', res.body);
-
         check(res, {
             'SpladeQuery POST status was 200': (r) => r.status == 200,
         });
-    } catch (error) {
-        console.error('Error in spladeQuery function:', error);
-    } finally {
-        sleep(1);
-    }
-}
+        if (res.status >= 300) {
+            console.error('Error in SpladeQuery POST request:', res.body);
+        }
+} 
 
 // Read the content of the file in the global scope
 const spladeDocInputs = open('./assets/spladedoc.txt').split('\n');
 
 export function spladeDoc() {
-    try {
+
         let url = 'http://text-splade-doc.dev.curieo.ai/embed_sparse';
         let headers = {
             'Content-Type': 'application/json',
@@ -233,18 +215,13 @@ export function spladeDoc() {
         let res = http.post(url, body, { headers: headers });
         spladeDocLatency.add(res.timings.duration);
 
-        console.log('POST Response status:', res.status);
-        console.log('POST Response body:', res.body);
-
         check(res, {
             'SpladeDoc status was 200': (r) => r.status == 200,
         });
-    } catch (error) {
-        console.error('Error in spladeDoc function:', error);
-    } finally {
-        sleep(1);
-    }
-}
+        if (res.status >= 300) {
+            console.error('Error in SpladeDoc POST request:', res.body);
+        }
+} 
 
 
 // Add more functions as needed
