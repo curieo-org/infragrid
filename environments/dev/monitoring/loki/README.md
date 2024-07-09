@@ -25,7 +25,7 @@ helm upgrade --install --values promtail-values.yaml promtail grafana/promtail -
 
 Access dashboard using 
 
-    1. login to https://grafana.dev.curieo.org/dashboard/
+    1. login to https://grafana.dev.curieo.ai/dashboard/
     2. select `Loki Kubernetes Logs`
 
 

@@ -1,14 +1,14 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: injection-gateway
+  name: openbiollm-gateway
   namespace: dev
 spec:
   selector:
     istio: ingressgateway
   servers:
   - hosts:
-    - injection.dev.curieo.ai
+    - openbiollm.dev.curieo.ai
     port:
       name: http
       number: 80

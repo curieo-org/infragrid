@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - toxicity.dev.curieo.org
+    - toxicity.dev.curieo.ai
     port:
       name: http
       number: 80

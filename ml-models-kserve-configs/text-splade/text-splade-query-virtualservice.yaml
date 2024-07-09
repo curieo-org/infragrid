@@ -7,7 +7,7 @@ spec:
   gateways:
   - text-splade-query-gateway
   hosts:
-  - text-splade-query.dev.curieo.org
+  - text-splade-query.dev.curieo.ai
   http:
   - match:
     - port: 80

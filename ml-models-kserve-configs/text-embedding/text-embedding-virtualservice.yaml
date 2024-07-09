@@ -7,7 +7,7 @@ spec:
   gateways:
   - text-embedding-gateway
   hosts:
-  - text-embedding.dev.curieo.org
+  - text-embedding.dev.curieo.ai
   http:
   - match:
     - port: 80

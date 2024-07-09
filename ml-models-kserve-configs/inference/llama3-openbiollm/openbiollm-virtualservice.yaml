@@ -1,13 +1,13 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: text-generation-virtualservice
+  name: openbiollm-virtualservice
   namespace: dev
 spec:
   gateways:
-  - text-generation-gateway
+  - openbiollm-gateway
   hosts:
-  - text-generation.dev.curieo.ai
+  - openbiollm.dev.curieo.ai
   http:
   - match:
     - port: 80

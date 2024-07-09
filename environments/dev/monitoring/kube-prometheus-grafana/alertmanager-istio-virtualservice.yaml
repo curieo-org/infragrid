@@ -7,7 +7,7 @@ spec:
   gateways:
   - alertmanager-gateway
   hosts:
-  - alertmanager.dev.curieo.org
+  - alertmanager.dev.curieo.ai
   http:
   - match:
     - port: 80

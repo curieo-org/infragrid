@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
   - hosts:
-    - text-splade-query.dev.curieo.org
+    - text-splade-query.dev.curieo.ai
     port:
       name: http
       number: 80

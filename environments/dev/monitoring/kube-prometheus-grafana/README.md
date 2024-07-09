@@ -18,5 +18,5 @@ helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheu
 
 Access dashboard using 
 
-https://grafana.dev.curieo.org/dashboard
+https://grafana.dev.curieo.ai/dashboard
 

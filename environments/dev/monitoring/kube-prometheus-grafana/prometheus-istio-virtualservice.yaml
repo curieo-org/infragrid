@@ -7,7 +7,7 @@ spec:
   gateways:
   - prometheus-gateway
   hosts:
-  - prometheus.dev.curieo.org
+  - prometheus.dev.curieo.ai
   http:
   - match:
     - port: 80
