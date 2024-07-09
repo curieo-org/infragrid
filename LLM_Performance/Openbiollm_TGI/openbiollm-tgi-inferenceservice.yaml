@@ -1,0 +1,99 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: openbiollm-tgi
+  namespace: dev
+spec:
+  predictor:
+    containers:
+    - args:
+      - --model-id
+      - /usr/src/data
+      - --json-output
+      - --port
+      - "80"
+      - --huggingface-hub-cache
+      - /usr/src/data
+      env:
+      - name: HUGGING_FACE_HUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hf-token
+              key: hf-token
+      - name: HF_NUM_CORES
+        value: "2"
+      - name: HF_AUTO_CAST_TYPE
+        value: "bf16"
+      - name: MAX_BATCH_SIZE
+        value: "1"
+      - name: MAX_TOTAL_TOKENS
+        value: "4096"
+      - name: MAX_INPUT_LENGTH
+        value: "3164"
+      image: ghcr.io/huggingface/neuronx-tgi:latest
+      name: kserve-container
+      securityContext:
+        privileged: true
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources:
+        limits:
+          cpu: "4"
+          memory: 32Gi
+          aws.amazon.com/neuron: "1"
+        requests:
+          cpu: "1"
+          memory: 8Gi
+          aws.amazon.com/neuron: "1"
+      volumeMounts:
+      - mountPath: /usr/src/data
+        name: model-storage
+    maxReplicas: 1
+    minReplicas: 1
+    nodeSelector:
+      role: inferentia
+    scaleMetric: concurrency
+    tolerations:
+    - effect: NoSchedule
+      key: aws.amazon.com/neuron
+      operator: Exists
+    volumes:
+    - name: model-storage
+      persistentVolumeClaim:
+        claimName: hf-cache-pv-claim
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: openbiollm-tgi-virtualservice
+  namespace: dev
+spec:
+  gateways:
+    - openbiollm-tgi-gateway
+  hosts:
+    - openbiollm-tgi.dev.curieo.ai
+  http:
+    - match:
+        - port: 80
+      route:
+        - destination:
+            host: istio-ingressgateway.istio-system.svc.cluster.local
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: openbiollm-tgi-gateway
+  namespace: dev
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - openbiollm-tgi.dev.curieo.ai
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
