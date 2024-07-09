@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: openbiollm-virtualservice
+  namespace: dev
+spec:
+  gateways:
+  - openbiollm-gateway
+  hosts:
+  - openbiollm.dev.curieo.ai
+  http:
+  - match:
+    - port: 80
+    route:
+    - destination:
+        host: istio-ingressgateway.istio-system.svc.cluster.local
+        port:
+          number: 80
