@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
 # Kubeflow Installation 
 
-For new environment creation , create new folder and add `kustomization.yaml` in it and update patch configuration as per environment
+For new environment creation, create a new folder and add `kustomization.yaml` in it and update patch configuration as per environment
 We are using v1.8.0 on AWS EKS 1.29
 
 ## To install Kubeflow and Kserve combined 
